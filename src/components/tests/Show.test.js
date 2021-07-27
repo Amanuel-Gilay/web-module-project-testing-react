@@ -9,7 +9,7 @@ const testShow = {
 
     name: "test show",
     summary: "test summary",
-    season: [
+    seasons: [
         {
             id:0,
             name:"Season 1",
@@ -53,7 +53,7 @@ test('component renders when no seasons are selected and when rerenders with a s
     let episodes = screen.queryByTestId('episodes-container');
     expect(episodes).not.toBeInTheDocument();
 
-    rerender(<Show show={testShow}testSeason={1}/>);
+    rerender(<Show show={testShow}selectedSeason={1}/>);
     episodes = screen.queryByTestId('episodes-container');
     expect(episodes).toBeInTheDocument();
 

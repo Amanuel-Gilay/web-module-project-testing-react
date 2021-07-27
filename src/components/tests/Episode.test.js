@@ -16,7 +16,7 @@ const testEpisodeWithoutImage = {
     //Add in approprate test data structure here.
     id:1,
     name: "",
-    image: "http://static.tvmaze.com/uploads/images/medium_landscape/67/168918.jpg",
+    image: null,
     season: 1,
     number: 1,
     summary: "test summary",
@@ -39,7 +39,7 @@ test("renders the summury test passed as prop", ()=>{
 
 test("renders default image when image is not defined", ()=>{
     render(<Episode episode={testEpisodeWithoutImage}/>)
-    const image = screen.queryByAllText('./stranger_things.png');
+    const image = screen.queryByAltText('./stranger_things.png');
     expect(image).toBeInTheDocument();
     
 

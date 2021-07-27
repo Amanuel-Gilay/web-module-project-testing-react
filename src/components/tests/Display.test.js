@@ -1,8 +1,8 @@
 import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
-import useEvent from '@testing-library/user-event';
+import userEvent from '@testing-library/user-event';
 
-import Display from './..Display';
+import Display from './../Display';
 
 import mockFetchShow from './../../api/fetchShow';
 
@@ -29,14 +29,14 @@ test("renders with out errors", ()=>{
     render(<Display/>);
 
 
-})
+ })
 test('renders Show component when the button is called', async ()=>{
     mockFetchShow.mockResolvedValueOnce(testShow);
     render(<display/>);
     const button = screen.getByRole('button');
-    useEvent.click(button);
+    userEvent.click(button);
 
-    const show = await screen.findAllByTestId('show-container');
+    const show = await screen.findByTestId('show-container');
     expect(show).toBeInTheDocumet();
 });
 
@@ -45,7 +45,7 @@ test('renders season options maching fetch return when button is clicked',async 
 
     render(<display/>);
     const button = screen.getByRole('button');
-    useEvent.click(button);
+    userEvent.click(button);
 
     await waitFor(()=>{
         const seasonOptions = screen.queryAllByTestId('season-option');
@@ -58,7 +58,7 @@ test('displayFunc is called when the fetch button is pressed', async ()=>{
     mockFetchShow.mockResolvedValueOnce(testShow);
     const displayFunc = jest.fn();
     
-    render(<Display displayFunc={diplayFunc}/>);
+    render(<Display displayFunc={displayFunc}/>);
     const button = screen.getByRole('button');
     userEvent.click(button);
 
